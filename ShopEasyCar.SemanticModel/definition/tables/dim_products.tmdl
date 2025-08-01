@@ -1,0 +1,45 @@
+table dim_products
+	lineageTag: 36c95455-ee02-4322-8856-fa9b6b6dcacf
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: b683b6be-c5a1-4605-b508-154b61dfc820
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: c85aecdd-8ea2-4ca6-9990-ab193414b472
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 38f3bf49-c79c-422a-9100-2bc6f3a977c2
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition dim_products = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Sql.Databases("(localdb)\localDB_Manu_RMT"),
+				    ShopEasyCar = Source{[Name="ShopEasyCar"]}[Data],
+				    dbo_products = ShopEasyCar{[Schema="dbo",Item="products"]}[Data]
+				in
+				    dbo_products
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

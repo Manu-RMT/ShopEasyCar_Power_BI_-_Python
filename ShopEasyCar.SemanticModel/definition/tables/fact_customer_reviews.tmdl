@@ -1,0 +1,99 @@
+table fact_customer_reviews
+	lineageTag: 39e209f6-c529-4461-972a-751ad8fe0335
+
+	column ReviewID
+		dataType: int64
+		formatString: 0
+		lineageTag: 019b2223-87a1-495b-b26a-d3c54f68ba3d
+		summarizeBy: count
+		sourceColumn: ReviewID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: f0125e37-7fb4-41f1-b23a-48fb81c5b0a6
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b6357c4-764c-451b-a79d-69c1fd777510
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReviewDate
+		dataType: dateTime
+		formatString: dd/mm/yy
+		lineageTag: 62ac5a51-1a66-411e-8be1-84d9ec145ddd
+		summarizeBy: none
+		sourceColumn: ReviewDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Rating
+		dataType: int64
+		formatString: 0
+		lineageTag: b38a0389-b580-4f84-9574-25aaba9302ef
+		summarizeBy: sum
+		sourceColumn: Rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comment
+		dataType: string
+		lineageTag: c00d64e4-1a68-45cf-be63-7ea5e36ebba2
+		summarizeBy: none
+		sourceColumn: Comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column ConfianceScore
+		dataType: string
+		lineageTag: cc92d52b-fdb5-416d-854e-0c97f42ff7d0
+		summarizeBy: none
+		sourceColumn: ConfianceScore
+
+		annotation SummarizationSetBy = Automatic
+
+	column LabelModel
+		dataType: string
+		lineageTag: 7b621cc9-e504-4467-8c16-125132b54f34
+		summarizeBy: none
+		sourceColumn: LabelModel
+
+		annotation SummarizationSetBy = Automatic
+
+	column labelFinal
+		dataType: string
+		lineageTag: 2fde5d4d-8231-4e51-857f-e7564cd8d6a3
+		summarizeBy: none
+		sourceColumn: labelFinal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_customer_reviews = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\manra\Documents\Projects\WorkSpace\ShopEasyCar\SentimentScoreFinal.csv"),[Delimiter=";", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"En-têtes promus" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Type modifié" = Table.TransformColumnTypes(#"En-têtes promus",{{"ReviewID", Int64.Type}, {"CustomerID", Int64.Type}, {"ProductID", Int64.Type}, {"ReviewDate", type date}, {"Rating", Int64.Type}, {"Comment", type text}, {"ConfianceScore", type text}, {"LabelModel", type text}, {"labelFinal", type text}})
+				in
+				    #"Type modifié"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

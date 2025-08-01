@@ -1,0 +1,98 @@
+table fact_engagement_data
+	lineageTag: 0ab952b0-7662-4431-b6b0-12ad0be2f277
+
+	column EngagementID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f3ac3e1-f546-41ab-b272-de355a1770fe
+		summarizeBy: count
+		sourceColumn: EngagementID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentID
+		dataType: int64
+		formatString: 0
+		lineageTag: ebb0cdb6-676c-4769-848f-55b8ca8700e1
+		summarizeBy: count
+		sourceColumn: ContentID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CampaignID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6907a1a9-9986-43a2-b67f-24213b2afa36
+		summarizeBy: count
+		sourceColumn: CampaignID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 14644eb5-deeb-42c5-8148-b0e5c87665e4
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContentType
+		dataType: string
+		lineageTag: e5cfcf45-e4f3-4c28-bff3-0224bd723932
+		summarizeBy: none
+		sourceColumn: ContentType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Likes
+		dataType: int64
+		formatString: 0
+		lineageTag: e2ac5195-f3ca-4f3f-b3d6-6794c1fff361
+		summarizeBy: sum
+		sourceColumn: Likes
+
+		annotation SummarizationSetBy = Automatic
+
+	column EngagementDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b79d895-ea5d-4f10-a957-e2fbe70aa83c
+		summarizeBy: none
+		sourceColumn: EngagementDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Views
+		dataType: int64
+		formatString: 0
+		lineageTag: d8f5c763-efb6-446c-8639-71bbbb824a31
+		summarizeBy: sum
+		sourceColumn: Views
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicked
+		dataType: int64
+		formatString: 0
+		lineageTag: 8949cf1f-ad80-4118-be2a-7d79200a9976
+		summarizeBy: sum
+		sourceColumn: Clicked
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_engagement_data = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Sql.Databases("(localdb)\localDB_Manu_RMT"),
+				    ShopEasyCar = Source{[Name="ShopEasyCar"]}[Data],
+				    dbo_engagement_data = ShopEasyCar{[Schema="dbo",Item="engagement_data"]}[Data]
+				in
+				    dbo_engagement_data
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

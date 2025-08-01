@@ -1,0 +1,14 @@
+EVALUATE
+TOPN(
+    10,
+    ADDCOLUMNS(
+        SUMMARIZE(dim_products, dim_products[ProductName]),
+        "NbVentes",
+        CALCULATE(
+            COUNT(fact_customer_journey[JourneyID]),
+            FILTER(fact_customer_journey, fact_customer_journey[Stage] = "Achat")
+        )
+    ),
+    [NbVentes],
+    DESC
+)

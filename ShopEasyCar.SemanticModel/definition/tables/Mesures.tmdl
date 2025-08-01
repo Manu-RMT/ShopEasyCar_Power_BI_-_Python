@@ -1,0 +1,100 @@
+table Mesures
+	lineageTag: 352643b8-95b1-4eae-9fb7-e8fda66ee968
+
+	measure Sum_Engagement_Clicked = SUM(fact_engagement_data[Clicked])
+		formatString: #,0
+		lineageTag: bd249f1b-3dbc-4e22-ae8c-3bed45c47363
+
+	measure Sum_Engagement_Licked = SUM(fact_engagement_data[Likes])
+		formatString: #,0
+		lineageTag: 624b35b9-2e85-4dc6-b4e4-c4a3f666241a
+
+	measure NB_Compaigns = DISTINCTCOUNT(fact_engagement_data[CampaignID])
+		formatString: 0
+		lineageTag: b04e5750-9dba-4783-8a7d-b2e74a862683
+
+	measure NB_Customers_journeys = DISTINCTCOUNT(fact_customer_journey[JourneyID])
+		formatString: 0
+		lineageTag: 8f21f88a-23c5-4284-9295-61a22dc22e52
+
+	measure NB_Customers_reviews = DISTINCTCOUNT(fact_customer_reviews[ReviewID])
+		formatString: 0
+		lineageTag: fce4fc30-8f7e-456f-accf-feaaf840be87
+
+	measure AVG_Rating_reviews = AVERAGE(fact_customer_reviews[Rating])
+		lineageTag: 7efbacb8-eb85-4d14-afd4-d6e864ad720f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Sum_Engagement_Views = sum(fact_engagement_data[Views])
+		formatString: #,0
+		lineageTag: 21f5d3ee-68bd-469d-995e-f5e0a79b3257
+
+	measure %_Customer_Purchase =
+			
+			DIVIDE([NB_CarsSales],[NB_CarsVisited],0)
+		formatString: 0.0\ %;-0.0\ %;0.0\ %
+		lineageTag: e8a1bc0d-5cf1-487b-b0be-fdd2c0257b77
+
+	measure NB_CarsSales = CALCULATE(COUNT(fact_customer_journey[JourneyID]),fact_customer_journey[Stage] = "Achat")
+		formatString: 0
+		lineageTag: 2b812cfc-e742-4027-ba3e-81ce9d21e3fc
+
+	measure NB_CarsVisited = CALCULATE(COUNT(fact_customer_journey[JourneyID]),fact_customer_journey[Stage] = "Visite Concession"  || fact_customer_journey[Stage] = "Négociation")
+		formatString: 0
+		lineageTag: dae6ca27-5daf-438e-80d2-7e3ca7d68780
+
+	measure TOP_10_CarsSales
+		lineageTag: e6afc806-badc-441e-b4fb-4ddec3997540
+
+	measure NB_Visitors = DISTINCTCOUNT(fact_customer_journey[CustomerID])
+		formatString: 0
+		lineageTag: 434271d5-51ae-4f3a-97d0-7fce37fa4fbd
+
+	measure NB_Visitors_SansSegment =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(fact_customer_journey[CustomerID]),
+			    ALL(fact_customer_journey)
+			)
+		formatString: 0
+		lineageTag: 5dd7f19d-9163-4d93-8e10-0c07a740d1cd
+
+	measure NB_CarsVisited_SansSegment = ```
+			CALCULATE(
+			    COUNT(fact_customer_journey[JourneyID]),
+			    FILTER(
+			        ALL(fact_customer_journey),
+			        fact_customer_journey[Stage] = "Visite Concession"
+			        || fact_customer_journey[Stage] = "Négociation"
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: b159e94b-1095-476c-a780-6f9b7363ece3
+
+	measure %_Customer_Purchase_Global = DIVIDE([NB_CarsSales],[NB_CarsVisited_SansSegment],0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: b2dbb2aa-66e1-4d90-8fea-ea973fa007f6
+
+	measure Sum_PriceCar = SUM(fact_achats_journey[Price])
+		lineageTag: 4c136c4a-56e6-4fa4-991b-a575122340ba
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Mesures = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Colonne 1" = _t]),
+				    #"Type modifié" = Table.TransformColumnTypes(Source,{{"Colonne 1", type text}}),
+				    #"Colonnes supprimées" = Table.RemoveColumns(#"Type modifié",{"Colonne 1"})
+				in
+				    #"Colonnes supprimées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

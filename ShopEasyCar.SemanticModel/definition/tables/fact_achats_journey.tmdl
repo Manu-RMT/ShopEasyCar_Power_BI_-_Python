@@ -1,0 +1,75 @@
+table fact_achats_journey
+	lineageTag: 09d1d6e5-280d-422f-8002-8123dded401d
+
+	column VisiteDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: edaccba7-fe15-4f5e-a8bd-ca51c7af23e0
+		summarizeBy: none
+		sourceColumn: VisiteDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7011edb3-45a5-453e-98e0-b172b68355b7
+		summarizeBy: none
+		sourceColumn: ProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 301147cb-cede-4973-80f7-e4be01320f4d
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column JourneyID
+		dataType: int64
+		formatString: 0
+		lineageTag: d4713f41-c0df-4874-bf3f-458767641e05
+		summarizeBy: count
+		sourceColumn: JourneyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: ecc2c055-55f8-4dea-a7b3-5e006a80fc6a
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		lineageTag: 22692b62-9127-43f0-9e2b-a67e7f1db847
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition fact_achats_journey = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = fact_customer_journey,
+				    #"Lignes filtrées" = Table.SelectRows(Source, each ([Stage] = "Achat")),
+				    #"Autres colonnes supprimées" = Table.SelectColumns(#"Lignes filtrées",{"VisiteDate", "ProductID", "CustomerID", "JourneyID"}),
+				    #"Requêtes fusionnées" = Table.NestedJoin(#"Autres colonnes supprimées", {"ProductID"}, dim_products, {"ProductID"}, "dim_products", JoinKind.Inner),
+				    #"dim_products développé" = Table.ExpandTableColumn(#"Requêtes fusionnées", "dim_products", {"ProductName", "Price"}, {"ProductName", "Price"}),
+				    #"Colonnes permutées" = Table.ReorderColumns(#"dim_products développé",{"ProductID", "CustomerID", "JourneyID", "VisiteDate", "ProductName", "Price"})
+				in
+				    #"Colonnes permutées"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

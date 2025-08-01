@@ -1,0 +1,69 @@
+table dim_customers
+	lineageTag: 811bc841-bf0e-4363-bc75-38dc3fd2f206
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 365bf15e-0a63-46fb-8850-63d57c6eb7ad
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: ab01c6e5-252a-43c4-960c-717105e474c4
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: 3dc5f47d-e0c6-4926-91d2-6e64eaa054db
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 88408d69-241d-4ede-b150-bd02a6090479
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 3682ddb6-53d4-43b1-84f3-d04eeb78a876
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a7872a7-1ea7-48f2-a6a6-581ff55bd434
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customers = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Sql.Databases("(localdb)\localDB_Manu_RMT"),
+				    ShopEasyCar = Source{[Name="ShopEasyCar"]}[Data],
+				    dbo_customers = ShopEasyCar{[Schema="dbo",Item="customers"]}[Data]
+				in
+				    dbo_customers
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

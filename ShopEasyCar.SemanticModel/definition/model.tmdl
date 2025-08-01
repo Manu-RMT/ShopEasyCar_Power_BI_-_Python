@@ -1,0 +1,34 @@
+model Model
+	culture: fr-FR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: fr-FR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup datas
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["dim_customers","dim_localisation","dim_products","fact_engagement_data","fact_customer_reviews","fact_customer_journey","Mesures","fact_achats_journey"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.144.1378.0 (25.06)+cba1e61f16ea36d44901f06fa446299040122394
+
+annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
+
+ref table dim_customers
+ref table dim_localisation
+ref table dim_products
+ref table fact_engagement_data
+ref table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
+ref table fact_customer_reviews
+ref table Calendar
+ref table LocalDateTable_401a2e51-02d9-4183-a22d-cef2595e0f19
+ref table fact_customer_journey
+ref table Mesures
+ref table fact_achats_journey
+
+ref cultureInfo fr-FR
+

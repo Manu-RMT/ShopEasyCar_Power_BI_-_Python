@@ -1,0 +1,45 @@
+table dim_localisation
+	lineageTag: 9ef612e0-ad50-41ba-b083-478cf896bce9
+
+	column GeographyID
+		dataType: int64
+		formatString: 0
+		lineageTag: c6e6c258-1199-458f-95f3-ed2e7c4ae1a7
+		summarizeBy: none
+		sourceColumn: GeographyID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 650b642f-7d89-4b3d-800a-f4a56b40a0a0
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: e1d15cd9-364f-465e-a7e8-59ac317a4068
+		dataCategory: Place
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_localisation = m
+		mode: import
+		queryGroup: datas
+		source =
+				let
+				    Source = Sql.Databases("(localdb)\localDB_Manu_RMT"),
+				    ShopEasyCar = Source{[Name="ShopEasyCar"]}[Data],
+				    dbo_localisation = ShopEasyCar{[Schema="dbo",Item="localisation"]}[Data]
+				in
+				    dbo_localisation
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
