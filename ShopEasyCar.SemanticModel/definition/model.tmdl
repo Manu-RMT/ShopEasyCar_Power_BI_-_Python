@@ -14,8 +14,6 @@ annotation PBI_QueryOrder = ["dim_customers","dim_localisation","dim_products","
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBIDesktopVersion = 2.144.1378.0 (25.06)+cba1e61f16ea36d44901f06fa446299040122394
-
 annotation PBI_ProTooling = ["DevMode","DaxQueryView_Desktop"]
 
 ref table dim_customers

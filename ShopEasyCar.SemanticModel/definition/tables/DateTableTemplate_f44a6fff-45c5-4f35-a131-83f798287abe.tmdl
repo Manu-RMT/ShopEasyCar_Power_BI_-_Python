@@ -6,7 +6,6 @@ table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
 	column Date
 		dataType: dateTime
 		isHidden
-		formatString: General Date
 		lineageTag: 692e3379-cce8-436f-a596-730b5a538e48
 		dataCategory: PaddedDateTableDates
 		summarizeBy: none
@@ -18,7 +17,6 @@ table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
 	column Année = YEAR([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
 		lineageTag: ec5d5728-7cc9-47aa-8903-7ceef5515f97
 		dataCategory: Years
 		summarizeBy: none
@@ -30,7 +28,6 @@ table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
 	column NoMois = MONTH([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
 		lineageTag: 49b3d6c0-086e-4fea-a79c-d20a894728fe
 		dataCategory: MonthOfYear
 		summarizeBy: none
@@ -54,7 +51,6 @@ table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
 	column NoTrimestre = INT(([NoMois] + 2) / 3)
 		dataType: int64
 		isHidden
-		formatString: 0
 		lineageTag: a92b8fb8-93c6-4d65-93e8-ebba3721316f
 		dataCategory: QuarterOfYear
 		summarizeBy: none
@@ -78,7 +74,6 @@ table DateTableTemplate_f44a6fff-45c5-4f35-a131-83f798287abe
 	column Jour = DAY([Date])
 		dataType: int64
 		isHidden
-		formatString: 0
 		lineageTag: 5148c4e9-8a8e-47f1-ac10-8667d6f3a4f5
 		dataCategory: DayOfMonth
 		summarizeBy: none

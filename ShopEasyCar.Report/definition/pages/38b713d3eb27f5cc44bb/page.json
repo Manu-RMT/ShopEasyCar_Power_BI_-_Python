@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "38b713d3eb27f5cc44bb",
+  "displayName": "Tableau Detail",
+  "displayOption": "ActualSize",
+  "height": 300,
+  "width": 500,
+  "type": "Tooltip"
+}

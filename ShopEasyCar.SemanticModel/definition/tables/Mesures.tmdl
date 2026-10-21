@@ -78,7 +78,7 @@ table Mesures
 		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		lineageTag: b2dbb2aa-66e1-4d90-8fea-ea973fa007f6
 
-	measure Sum_PriceCar = SUM(fact_achats_journey[Price])
+	measure CA = SUM(fact_achats_journey[Price])
 		lineageTag: 4c136c4a-56e6-4fa4-991b-a575122340ba
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}

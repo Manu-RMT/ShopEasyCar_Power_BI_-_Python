@@ -148,12 +148,6 @@ cultureInfo fr-FR
 			          }
 			        },
 			        {
-			          "ID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "CustomerID": {
 			            "Type": "Noun",
 			            "State": "Generated",
@@ -266,8 +260,7 @@ cultureInfo fr-FR
 			            "Weight": 0.736
 			          }
 			        }
-			      ],
-			      "NameType": "Identifier"
+			      ]
 			    },
 			    "dim_customer.customer_name": {
 			      "Definition": {
@@ -1005,12 +998,6 @@ cultureInfo fr-FR
 			          }
 			        },
 			        {
-			          "ID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "ProductID": {
 			            "Type": "Noun",
 			            "State": "Generated",
@@ -1123,8 +1110,7 @@ cultureInfo fr-FR
 			            "Weight": 0.582
 			          }
 			        }
-			      ],
-			      "NameType": "Identifier"
+			      ]
 			    },
 			    "dim_product.product_name": {
 			      "Definition": {
@@ -1138,6 +1124,12 @@ cultureInfo fr-FR
 			        {
 			          "product name": {
 			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "name": {
+			            "State": "Generated",
+			            "Weight": 0.97
 			          }
 			        },
 			        {
@@ -1272,8 +1264,19 @@ cultureInfo fr-FR
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "Véhicules": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
-			      ]
+			      ],
+			      "NameType": "Name"
 			    },
 			    "dim_product.price": {
 			      "Definition": {
@@ -2500,12 +2503,6 @@ cultureInfo fr-FR
 			          }
 			        },
 			        {
-			          "ID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "ReviewID": {
 			            "Type": "Noun",
 			            "State": "Generated",
@@ -2618,8 +2615,7 @@ cultureInfo fr-FR
 			            "Weight": 0.491
 			          }
 			        }
-			      ],
-			      "NameType": "Identifier"
+			      ]
 			    },
 			    "fact_customer_review.customer_ID": {
 			      "Definition": {
@@ -4761,12 +4757,6 @@ cultureInfo fr-FR
 			          }
 			        },
 			        {
-			          "ID": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
 			          "JourneyID": {
 			            "Type": "Noun",
 			            "State": "Generated",
@@ -4879,8 +4869,7 @@ cultureInfo fr-FR
 			            "Weight": 0.476
 			          }
 			        }
-			      ],
-			      "NameType": "Identifier"
+			      ]
 			    },
 			    "fact_customer_journey.customer_ID": {
 			      "Definition": {
@@ -7120,7 +7109,7 @@ cultureInfo fr-FR
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Mesures",
-			          "ConceptualProperty": "Sum_PriceCar"
+			          "ConceptualProperty": "CA"
 			        }
 			      },
 			      "State": "Generated",
@@ -8080,6 +8069,131 @@ cultureInfo fr-FR
 			    }
 			  },
 			  "Relationships": {
+			    "calendar_date_has_hiérarchie_de_date": {
+			      "Binding": {
+			        "ConceptualEntity": "Calendar"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "calendar.date": {
+			          "Target": {
+			            "Entity": "calendar.date"
+			          }
+			        },
+			        "calendar.date.hiérarchie_de_date": {
+			          "Target": {
+			            "Entity": "calendar.date.hiérarchie_de_date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendar.date"
+			            },
+			            "Object": {
+			              "Role": "calendar.date.hiérarchie_de_date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dates_have_hiérarchie_de_dates"
+			        }
+			      ]
+			    },
+			    "fact_achats_journey_has_dim_product": {
+			      "Binding": {
+			        "ConceptualEntity": "fact_achats_journey"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_achats_journey": {
+			          "Target": {
+			            "Entity": "fact_achats_journey"
+			          }
+			        },
+			        "dim_product": {
+			          "Target": {
+			            "Entity": "dim_product"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_achats_journey"
+			            },
+			            "Object": {
+			              "Role": "dim_product"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_achats_journeys_have_dim_products"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_product"
+			            },
+			            "Object": {
+			              "Role": "fact_achats_journey"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_products_have_fact_achats_journeys"
+			        }
+			      ]
+			    },
+			    "fact_achats_journey_has_calendar": {
+			      "Binding": {
+			        "ConceptualEntity": "fact_achats_journey"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_achats_journey": {
+			          "Target": {
+			            "Entity": "fact_achats_journey"
+			          }
+			        },
+			        "calendar": {
+			          "Target": {
+			            "Entity": "calendar"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_achats_journey"
+			            },
+			            "Object": {
+			              "Role": "calendar"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_achats_journeys_have_calendars"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "calendar"
+			            },
+			            "Object": {
+			              "Role": "fact_achats_journey"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "calendars_have_fact_achats_journeys"
+			        }
+			      ]
+			    },
 			    "fact_achats_journey_has_dim_customer": {
 			      "Binding": {
 			        "ConceptualEntity": "fact_achats_journey"
@@ -9396,19 +9510,6 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "fact_customer_journeys_have_journey_ID"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "fact_customer_journey"
-			            },
-			            "Name": {
-			              "Role": "fact_customer_journey.journey_ID"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "journey_ID_are_names_IDs_of_fact_customer_journeys"
 			        }
 			      ]
 			    },
@@ -10120,19 +10221,6 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "fact_customer_reviews_have_review_ID"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "fact_customer_review"
-			            },
-			            "Name": {
-			              "Role": "fact_customer_review.review_ID"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "review_ID_are_names_IDs_of_fact_customer_reviews"
 			        }
 			      ]
 			    },
@@ -10510,6 +10598,19 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_products_have_product_names"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "dim_product"
+			            },
+			            "Name": {
+			              "Role": "dim_product.product_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "product_names_are_names_IDs_of_dim_products"
 			        }
 			      ]
 			    },
@@ -10543,19 +10644,6 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_products_have_product_ID"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "dim_product"
-			            },
-			            "Name": {
-			              "Role": "dim_product.product_ID"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "product_ID_are_names_IDs_of_dim_products"
 			        }
 			      ]
 			    },
@@ -10860,19 +10948,6 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.99,
 			          "ID": "dim_customers_have_customer_ID"
-			        },
-			        {
-			          "Name": {
-			            "Subject": {
-			              "Role": "dim_customer"
-			            },
-			            "Name": {
-			              "Role": "dim_customer.customer_ID"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "customer_ID_are_names_IDs_of_dim_customers"
 			        }
 			      ]
 			    },
@@ -11005,131 +11080,6 @@ cultureInfo fr-FR
 			          "State": "Generated",
 			          "Weight": 0.9,
 			          "ID": "fact_customer_reviews_are_reviewed_on_review_dates"
-			        }
-			      ]
-			    },
-			    "fact_achats_journey_has_calendar": {
-			      "Binding": {
-			        "ConceptualEntity": "fact_achats_journey"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fact_achats_journey": {
-			          "Target": {
-			            "Entity": "fact_achats_journey"
-			          }
-			        },
-			        "calendar": {
-			          "Target": {
-			            "Entity": "calendar"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fact_achats_journey"
-			            },
-			            "Object": {
-			              "Role": "calendar"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fact_achats_journeys_have_calendars"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "calendar"
-			            },
-			            "Object": {
-			              "Role": "fact_achats_journey"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "calendars_have_fact_achats_journeys"
-			        }
-			      ]
-			    },
-			    "fact_achats_journey_has_dim_product": {
-			      "Binding": {
-			        "ConceptualEntity": "fact_achats_journey"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "fact_achats_journey": {
-			          "Target": {
-			            "Entity": "fact_achats_journey"
-			          }
-			        },
-			        "dim_product": {
-			          "Target": {
-			            "Entity": "dim_product"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "fact_achats_journey"
-			            },
-			            "Object": {
-			              "Role": "dim_product"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "fact_achats_journeys_have_dim_products"
-			        },
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "dim_product"
-			            },
-			            "Object": {
-			              "Role": "fact_achats_journey"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dim_products_have_fact_achats_journeys"
-			        }
-			      ]
-			    },
-			    "calendar_date_has_hiérarchie_de_date": {
-			      "Binding": {
-			        "ConceptualEntity": "Calendar"
-			      },
-			      "State": "Generated",
-			      "Roles": {
-			        "calendar.date": {
-			          "Target": {
-			            "Entity": "calendar.date"
-			          }
-			        },
-			        "calendar.date.hiérarchie_de_date": {
-			          "Target": {
-			            "Entity": "calendar.date.hiérarchie_de_date"
-			          }
-			        }
-			      },
-			      "Phrasings": [
-			        {
-			          "Attribute": {
-			            "Subject": {
-			              "Role": "calendar.date"
-			            },
-			            "Object": {
-			              "Role": "calendar.date.hiérarchie_de_date"
-			            }
-			          },
-			          "State": "Generated",
-			          "Weight": 0.99,
-			          "ID": "dates_have_hiérarchie_de_dates"
 			        }
 			      ]
 			    },
