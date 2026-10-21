@@ -83,6 +83,16 @@ table Mesures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure %_click_sur_vues = DIVIDE([Sum_Engagement_Clicked],[Sum_Engagement_Views],0)
+		lineageTag: 0767df9e-03ee-4d07-9d91-c799067aa931
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure %_likes_sur_vues = DIVIDE([Sum_Engagement_Licked],[Sum_Engagement_Views],0)
+		lineageTag: 17fc68e5-3ca2-467e-8fd4-66366e49caf9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	partition Mesures = m
 		mode: import
 		queryGroup: datas

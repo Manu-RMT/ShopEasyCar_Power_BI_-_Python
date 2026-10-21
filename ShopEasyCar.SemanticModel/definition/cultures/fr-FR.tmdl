@@ -5638,6 +5638,16 @@ cultureInfo fr-FR
 			            },
 			            "Weight": 0.9
 			          }
+			        },
+			        {
+			          "CLICS": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
 			        }
 			      ]
 			    },
@@ -7105,7 +7115,7 @@ cultureInfo fr-FR
 			        }
 			      ]
 			    },
-			    "mesure.sum_price_car": {
+			    "mesure.ca": {
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Mesures",
@@ -7115,137 +7125,8 @@ cultureInfo fr-FR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "sum price car": {
+			          "ca": {
 			            "State": "Generated"
-			          }
-			        },
-			        {
-			          "Sum_PriceCar": {
-			            "Type": "Noun",
-			            "State": "Generated",
-			            "Weight": 0.99
-			          }
-			        },
-			        {
-			          "car": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "price car": {
-			            "State": "Generated",
-			            "Weight": 0.97
-			          }
-			        },
-			        {
-			          "summation price car": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.609
-			          }
-			        },
-			        {
-			          "aggregation price car": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.609
-			          }
-			        },
-			        {
-			          "total price car": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "aggregate price car": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "amount price car": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.591
-			          }
-			        },
-			        {
-			          "sum price carriage": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "sum price Pullman": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "sum price flatcar": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "sum price sleeper": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.508
-			          }
-			        },
-			        {
-			          "price carriage": {
-			            "Type": "Noun",
-			            "State": "Suggested",
-			            "Source": {
-			              "Agent": "Thesaurus"
-			            },
-			            "Weight": 0.5
-			          }
-			        },
-			        {
-			          "CA": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
 			          }
 			        }
 			      ]
@@ -8066,6 +7947,78 @@ cultureInfo fr-FR
 			          }
 			        }
 			      ]
+			    },
+			    "mesure.entity__click_sur_vues": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "%_click_sur_vues"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "%_click_sur_vues": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage _click_sur_vue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "pct _click_sur_vue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "mesure.entity__likes_sur_vues": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Mesures",
+			          "ConceptualProperty": "%_likes_sur_vues"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "%_likes_sur_vues": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "percentage _likes_sur_vue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "pct _likes_sur_vue": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
 			    }
 			  },
 			  "Relationships": {
@@ -8661,6 +8614,72 @@ cultureInfo fr-FR
 			        }
 			      ]
 			    },
+			    "fact_engagement_data_has_mesure_entity__likes_sur_vues": {
+			      "Binding": {
+			        "ConceptualEntity": "fact_engagement_data"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_engagement_data": {
+			          "Target": {
+			            "Entity": "fact_engagement_data"
+			          }
+			        },
+			        "mesure.entity__likes_sur_vues": {
+			          "Target": {
+			            "Entity": "mesure.entity__likes_sur_vues"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_engagement_data"
+			            },
+			            "Object": {
+			              "Role": "mesure.entity__likes_sur_vues"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_engagement_data_have__likes_sur_vues"
+			        }
+			      ]
+			    },
+			    "fact_engagement_data_has_mesure_entity__click_sur_vues": {
+			      "Binding": {
+			        "ConceptualEntity": "fact_engagement_data"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fact_engagement_data": {
+			          "Target": {
+			            "Entity": "fact_engagement_data"
+			          }
+			        },
+			        "mesure.entity__click_sur_vues": {
+			          "Target": {
+			            "Entity": "mesure.entity__click_sur_vues"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fact_engagement_data"
+			            },
+			            "Object": {
+			              "Role": "mesure.entity__click_sur_vues"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fact_engagement_data_have__click_sur_vues"
+			        }
+			      ]
+			    },
 			    "fact_achats_journey_has_price": {
 			      "Binding": {
 			        "ConceptualEntity": "fact_achats_journey"
@@ -8820,7 +8839,7 @@ cultureInfo fr-FR
 			        }
 			      ]
 			    },
-			    "fact_achats_journey_has_mesure_sum_price_car": {
+			    "fact_achats_journey_has_mesure_ca": {
 			      "Binding": {
 			        "ConceptualEntity": "fact_achats_journey"
 			      },
@@ -8831,9 +8850,9 @@ cultureInfo fr-FR
 			            "Entity": "fact_achats_journey"
 			          }
 			        },
-			        "mesure.sum_price_car": {
+			        "mesure.ca": {
 			          "Target": {
-			            "Entity": "mesure.sum_price_car"
+			            "Entity": "mesure.ca"
 			          }
 			        }
 			      },
@@ -8844,12 +8863,12 @@ cultureInfo fr-FR
 			              "Role": "fact_achats_journey"
 			            },
 			            "Object": {
-			              "Role": "mesure.sum_price_car"
+			              "Role": "mesure.ca"
 			            }
 			          },
 			          "State": "Generated",
 			          "Weight": 0.99,
-			          "ID": "fact_achats_journeys_have_sum_price_car"
+			          "ID": "fact_achats_journeys_have_ca"
 			        }
 			      ]
 			    },

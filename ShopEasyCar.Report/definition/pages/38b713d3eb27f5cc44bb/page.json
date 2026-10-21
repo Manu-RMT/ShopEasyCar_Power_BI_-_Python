@@ -5,5 +5,6 @@
   "displayOption": "ActualSize",
   "height": 300,
   "width": 500,
+  "visibility": "HiddenInViewMode",
   "type": "Tooltip"
 }
